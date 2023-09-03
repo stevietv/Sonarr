@@ -5,6 +5,7 @@ import FormGroup from 'Components/Form/FormGroup';
 import FormInputGroup from 'Components/Form/FormInputGroup';
 import FormLabel from 'Components/Form/FormLabel';
 import { inputTypes } from 'Helpers/Props';
+import translate from 'Utilities/String/translate';
 
 function getType({ type, selectOptionsProviderAction }) {
   switch (type) {
@@ -91,7 +92,7 @@ function ProviderFieldFormGroup(props) {
       advancedSettings={advancedSettings}
       isAdvanced={advanced}
     >
-      <FormLabel>{label}</FormLabel>
+      <FormLabel>{translate(label)}</FormLabel>
 
       <FormInputGroup
         type={getType(props)}

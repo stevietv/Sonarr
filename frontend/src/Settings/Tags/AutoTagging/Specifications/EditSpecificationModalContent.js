@@ -63,6 +63,7 @@ function EditSpecificationModalContent(props) {
 
   const {
     implementationName,
+    localizedImplementationName,
     name,
     negate,
     required,
@@ -72,7 +73,7 @@ function EditSpecificationModalContent(props) {
   return (
     <ModalContent onModalClose={onCancelPress}>
       <ModalHeader>
-        {id ? translate('EditConditionImplementation', { implementationName }) : translate('AddConditionImplementation', { implementationName })}
+        {id ? translate('EditConditionImplementation', { implementationName: translate(localizedImplementationName.value) }) : translate('AddConditionImplementation', { implementationName: translate(localizedImplementationName.value) })}
       </ModalHeader>
 
       <ModalBody>

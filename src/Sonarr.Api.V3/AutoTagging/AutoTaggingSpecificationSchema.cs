@@ -10,6 +10,7 @@ namespace Sonarr.Api.V3.AutoTagging
         public string Name { get; set; }
         public string Implementation { get; set; }
         public string ImplementationName { get; set; }
+        public string LocalizedImplementationName { get; set; }
         public bool Negate { get; set; }
         public bool Required { get; set; }
         public List<Field> Fields { get; set; }
@@ -24,6 +25,7 @@ namespace Sonarr.Api.V3.AutoTagging
                 Name = model.Name,
                 Implementation = model.GetType().Name,
                 ImplementationName = model.ImplementationName,
+                LocalizedImplementationName = model.LocalizedImplementationName,
                 Negate = model.Negate,
                 Required = model.Required,
                 Fields = SchemaBuilder.ToSchema(model)

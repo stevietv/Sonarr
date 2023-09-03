@@ -14,6 +14,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 1;
         public override string ImplementationName => "Monitored";
+        public override string LocalizedImplementationName => "Monitored";
 
         protected override bool IsSatisfiedByWithoutNegate(Series series)
         {

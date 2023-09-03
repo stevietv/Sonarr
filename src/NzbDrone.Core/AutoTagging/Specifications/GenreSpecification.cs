@@ -21,6 +21,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 1;
         public override string ImplementationName => "Genre";
+        public override string LocalizedImplementationName => "Genre";
 
         [FieldDefinition(1, Label = "Genre(s)", Type = FieldType.Tag)]
         public IEnumerable<string> Value { get; set; }

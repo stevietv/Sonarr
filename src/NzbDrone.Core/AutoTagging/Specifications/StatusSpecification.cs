@@ -15,6 +15,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 1;
         public override string ImplementationName => "Status";
+        public override string LocalizedImplementationName => "Status";
 
         [FieldDefinition(1, Label = "Status", Type = FieldType.Select, SelectOptions = typeof(SeriesStatusType))]
         public int Status { get; set; }

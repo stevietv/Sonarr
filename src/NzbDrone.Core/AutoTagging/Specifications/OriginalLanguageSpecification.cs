@@ -20,6 +20,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 1;
         public override string ImplementationName => "Original Language";
+        public override string LocalizedImplementationName => "OriginalLanguage";
 
         [FieldDefinition(1, Label = "Language", Type = FieldType.Select, SelectOptions = typeof(OriginalLanguageFieldConverter))]
         public int Value { get; set; }

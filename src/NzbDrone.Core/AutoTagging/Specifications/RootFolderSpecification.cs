@@ -21,6 +21,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 1;
         public override string ImplementationName => "Root Folder";
+        public override string LocalizedImplementationName => "RootFolder";
 
         [FieldDefinition(1, Label = "Root Folder", Type = FieldType.RootFolder)]
         public string Value { get; set; }

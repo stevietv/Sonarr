@@ -7,7 +7,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
     {
         public abstract int Order { get; }
         public abstract string ImplementationName { get; }
-
+        public abstract string LocalizedImplementationName { get; }
         public string Name { get; set; }
         public bool Negate { get; set; }
         public bool Required { get; set; }

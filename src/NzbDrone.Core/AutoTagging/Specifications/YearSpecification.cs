@@ -22,11 +22,12 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 1;
         public override string ImplementationName => "Year";
+        public override string LocalizedImplementationName => "Year";
 
-        [FieldDefinition(1, Label = "Minimum Year", Type = FieldType.Number)]
+        [FieldDefinition(1, Label = "MinimumYear", Type = FieldType.Number)]
         public int Min { get; set; }
 
-        [FieldDefinition(2, Label = "Maximum Year", Type = FieldType.Number)]
+        [FieldDefinition(2, Label = "MaximumYear", Type = FieldType.Number)]
         public int Max { get; set; }
 
         protected override bool IsSatisfiedByWithoutNegate(Series series)

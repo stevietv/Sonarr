@@ -19,6 +19,7 @@ namespace NzbDrone.Core.AutoTagging.Specifications
 
         public override int Order => 2;
         public override string ImplementationName => "Series Type";
+        public override string LocalizedImplementationName => "SeriesType";
 
         [FieldDefinition(1, Label = "Series Type", Type = FieldType.Select, SelectOptions = typeof(SeriesTypes))]
         public int Value { get; set; }
