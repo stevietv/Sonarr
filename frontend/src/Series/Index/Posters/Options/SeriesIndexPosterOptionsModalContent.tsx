@@ -12,6 +12,8 @@ import ModalHeader from 'Components/Modal/ModalHeader';
 import { inputTypes } from 'Helpers/Props';
 import selectPosterOptions from 'Series/Index/Posters/selectPosterOptions';
 import { setSeriesPosterOption } from 'Store/Actions/seriesIndexActions';
+import { saveUISettings } from 'Store/Actions/Settings/ui';
+import createUISettingsSelector from 'Store/Selectors/createUISettingsSelector';
 import translate from 'Utilities/String/translate';
 
 const posterSizeOptions = [
@@ -40,9 +42,12 @@ interface SeriesIndexPosterOptionsModalContentProps {
 }
 
 function SeriesIndexPosterOptionsModalContent(
-  props: SeriesIndexPosterOptionsModalContentProps
+  props: SeriesIndexPosterOptionsModalContentProps // ,
+  // uiSettings: UiSettings
 ) {
   const { onModalClose } = props;
+
+  const uiSettings = useSelector(createUISettingsSelector());
 
   const posterOptions = useSelector(selectPosterOptions);
 
@@ -60,6 +65,13 @@ function SeriesIndexPosterOptionsModalContent(
   const onPosterOptionChange = useCallback(
     ({ name, value }: { name: string; value: unknown }) => {
       dispatch(setSeriesPosterOption({ [name]: value }));
+    },
+    [dispatch]
+  );
+
+  const onColorImpairedChange = useCallback(
+    ({ name, value }: { name: string; value: unknown }) => {
+      dispatch(saveUISettings({ [name]: value }));
     },
     [dispatch]
   );
@@ -139,6 +151,18 @@ function SeriesIndexPosterOptionsModalContent(
               value={showSearchAction}
               helpText={translate('ShowSearchHelpText')}
               onChange={onPosterOptionChange}
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <FormLabel>{translate('EnableColorImpairedMode')}</FormLabel>
+
+            <FormInputGroup
+              type={inputTypes.CHECK}
+              name="enableColorImpairedMode"
+              value={uiSettings.enableColorImpairedMode}
+              helpText={translate('EnableColorImpairedModeHelpText')}
+              onChange={onColorImpairedChange}
             />
           </FormGroup>
         </Form>
