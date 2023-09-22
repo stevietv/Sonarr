@@ -54,11 +54,25 @@ namespace NzbDrone.Core.Localization
         public string GetLocalizedString(string phrase)
         {
             var language = GetLanguageFileName();
+            var tokens = Array.Empty<string>();
 
-            return GetLocalizedString(phrase, language);
+            return GetLocalizedString(phrase, language, tokens);
         }
 
         public string GetLocalizedString(string phrase, string language)
+        {
+            var tokens = Array.Empty<string>();
+            return GetLocalizedString(phrase, language, tokens);
+        }
+
+        public string GetLocalizedString(string phrase, string[] tokens)
+        {
+            var language = GetLanguageFileName();
+
+            return GetLocalizedString(phrase, language, tokens);
+        }
+
+        public string GetLocalizedString(string phrase, string language, string[] tokens)
         {
             if (string.IsNullOrEmpty(phrase))
             {
@@ -79,7 +93,9 @@ namespace NzbDrone.Core.Localization
 
             if (dictionary.TryGetValue(phrase, out var value))
             {
-                return value;
+                var formattedValue = string.Format(value, tokens);
+                Console.WriteLine(formattedValue);
+                return formattedValue;
             }
 
             return phrase;

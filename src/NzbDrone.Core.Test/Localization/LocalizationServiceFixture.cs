@@ -74,6 +74,15 @@ namespace NzbDrone.Core.Test.Localization
         }
 
         [Test]
+        public void should_find_and_replace_tokens_with_passed_in_vars()
+        {
+            var tokens = new string[] { "qBittorrent", "/downloads", "Windows" };
+            var localizedString = Subject.GetLocalizedString("RemotePathMappingBadDockerPathHealthCheckMessage", tokens);
+
+            localizedString.Should().Be("You are using docker; download client qBittorrent places downloads in /downloads but this is not a valid Windows path. Review your remote path mappings and download client settings.");
+        }
+
+        [Test]
         public void should_throw_if_empty_string_passed()
         {
             Assert.Throws<ArgumentNullException>(() => Subject.GetLocalizedString(""));
