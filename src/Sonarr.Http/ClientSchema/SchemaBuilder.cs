@@ -118,10 +118,10 @@ namespace Sonarr.Http.ClientSchema
                     var field = new Field
                     {
                         Name = prefix + GetCamelCaseName(propertyInfo.Name),
-                        Label = fieldAttribute.Label.IsNotNullOrWhiteSpace() ? _localizationService.GetLocalizedString(fieldAttribute.Label) : fieldAttribute.Label,
+                        Label = fieldAttribute.Label.IsNotNullOrWhiteSpace() ? _localizationService.GetLocalizedString(fieldAttribute.Label, GetTokens(type, "Label")) : fieldAttribute.Label,
                         Unit = fieldAttribute.Unit,
-                        HelpText = fieldAttribute.HelpText.IsNotNullOrWhiteSpace() ? _localizationService.GetLocalizedString(fieldAttribute.HelpText) : fieldAttribute.HelpText,
-                        HelpTextWarning = fieldAttribute.HelpTextWarning.IsNotNullOrWhiteSpace() ?  _localizationService.GetLocalizedString(fieldAttribute.HelpTextWarning) : fieldAttribute.HelpTextWarning,
+                        HelpText = fieldAttribute.HelpText.IsNotNullOrWhiteSpace() ? _localizationService.GetLocalizedString(fieldAttribute.HelpText, GetTokens(type, "HelpText")) : fieldAttribute.HelpText,
+                        HelpTextWarning = fieldAttribute.HelpTextWarning.IsNotNullOrWhiteSpace() ?  _localizationService.GetLocalizedString(fieldAttribute.HelpTextWarning, GetTokens(type, "HelpTextWarning")) : fieldAttribute.HelpTextWarning,
                         HelpLink = fieldAttribute.HelpLink,
                         Order = fieldAttribute.Order,
                         Advanced = fieldAttribute.Advanced,
@@ -179,6 +179,24 @@ namespace Sonarr.Http.ClientSchema
                 .Where(v => v.Item2 != null)
                 .OrderBy(v => v.Item2.Order)
                 .ToArray();
+        }
+
+        private static Dictionary<string, object> GetTokens(Type type, string field)
+        {
+            var tokens = new Dictionary<string, object>();
+
+            foreach (var propertyInfo in type.GetProperties())
+            {
+                foreach (var attribute in propertyInfo.GetCustomAttributes(true))
+                {
+                    if (attribute is FieldTokenAttribute fieldTokenAttribute && fieldTokenAttribute.Field == field)
+                    {
+                        tokens.Add(fieldTokenAttribute.Token, fieldTokenAttribute.Value);
+                    }
+                }
+            }
+
+            return tokens;
         }
 
         private static List<SelectOption> GetSelectOptions(Type selectOptions)
