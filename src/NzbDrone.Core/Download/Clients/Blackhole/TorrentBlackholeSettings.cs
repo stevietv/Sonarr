@@ -32,7 +32,7 @@ namespace NzbDrone.Core.Download.Clients.Blackhole
         [FieldToken(TokenField.HelpText, "extension", ".torrent")]
         public string TorrentFolder { get; set; }
 
-        [FieldDefinition(1, Label = "TorrentBlackholeWatchFolder", Type = FieldType.Path, HelpText = "TorrentBlackholeWatchFolderHelpText")]
+        [FieldDefinition(1, Label = "BlackholeWatchFolder", Type = FieldType.Path, HelpText = "BlackholeWatchFolderHelpText")]
         public string WatchFolder { get; set; }
 
         [DefaultValue(false)]
