@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using FluentValidation;
 using NzbDrone.Core.Annotations;
+using NzbDrone.Core.Localization;
 using NzbDrone.Core.ThingiProvider;
 using NzbDrone.Core.Validation;
 
@@ -7,13 +9,14 @@ namespace NzbDrone.Core.Download.Clients.Deluge
 {
     public class DelugeSettingsValidator : AbstractValidator<DelugeSettings>
     {
+        private static ILocalizationService LocalizationService;
         public DelugeSettingsValidator()
         {
             RuleFor(c => c.Host).ValidHost();
             RuleFor(c => c.Port).InclusiveBetween(1, 65535);
 
-            RuleFor(c => c.TvCategory).Matches("^[-a-z0-9]*$").WithMessage("Allowed characters a-z, 0-9 and -");
-            RuleFor(c => c.TvImportedCategory).Matches("^[-a-z0-9]*$").WithMessage("Allowed characters a-z, 0-9 and -");
+            RuleFor(c => c.TvCategory).Matches("^[-a-z0-9]*$").WithMessage("EditConditionImplementation");
+            RuleFor(c => c.TvImportedCategory).Matches("^[-a-z0-9]*$").WithTranslatedMessage(LocalizationService, "Allowed characters a-z, 0-9 and -", new Dictionary<string, object> { { "lowerAlpha", "a-z" } });
         }
     }
 

@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using FluentValidation;
 using FluentValidation.Validators;
 using NzbDrone.Common.Extensions;
+using NzbDrone.Core.Localization;
 
 namespace NzbDrone.Core.Validation
 {
@@ -72,6 +74,13 @@ namespace NzbDrone.Core.Validation
         {
             ruleBuilder.SetValidator(new NotEmptyValidator(null));
             return ruleBuilder.SetValidator(new RegularExpressionValidator("^Sonarr|Sonarr$")).WithMessage("Must start or end with Sonarr");
+        }
+
+        public static IRuleBuilderOptions<T, TProp> WithTranslatedMessage<T, TProp>(
+            this IRuleBuilderOptions<T, TProp> ruleBuilder, ILocalizationService localizationService, string key, Dictionary<string, object> tokens)
+        {
+            var translatedString = localizationService.GetLocalizedString(key, tokens);
+            return ruleBuilder.WithMessage(translatedString);
         }
     }
 }
