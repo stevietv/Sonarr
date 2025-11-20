@@ -132,7 +132,7 @@ fi
 if [ -n "$arg_user" ]; then
     app_uid="$arg_user"
 else
-    read -r -p "What user should ${app^} run as? (Default: $app): " app_uid < /dev/tty
+    read -r -p "What user should ${app^} run as? (Default: $app): " app_uid
 fi
 app_uid=$(echo "$app_uid" | tr -d ' ')
 app_uid=${app_uid:-$app}
@@ -141,7 +141,7 @@ app_uid=${app_uid:-$app}
 if [ -n "$arg_group" ]; then
     app_guid="$arg_group"
 else
-    read -r -p "What group should ${app^} run as? (Default: media): " app_guid < /dev/tty
+    read -r -p "What group should ${app^} run as? (Default: media): " app_guid
 fi
 app_guid=$(echo "$app_guid" | tr -d ' ')
 app_guid=${app_guid:-media}
@@ -149,7 +149,7 @@ app_guid=${app_guid:-media}
 echo "This will install [${app^}] to [$bindir] and use [$datadir] for the AppData Directory"
 echo "${app^} will run as the user [$app_uid] and group [$app_guid]. By continuing, you've confirmed that the selected user and group will have READ and WRITE access to your Media Library and Download Client Completed Download directories"
 if ! $arg_unattended; then
-    read -n 1 -r -s -p $'Press enter to continue or ctrl+c to exit...\n' < /dev/tty
+    read -n 1 -r -s -p $'Press enter to continue or ctrl+c to exit...\n'
 fi
 
 # Create User / Group as needed
