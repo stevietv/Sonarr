@@ -49,6 +49,8 @@ internal static class ParserCommon
 
         // Spanish releases with information in brackets
         new RegexReplace(@"^(?<title>.+?(?=[ ._-]\()).+?\((?<year>\d{4})\/(?<info>S[^\/]+)", "${title} (${year}) - ${info} ", RegexOptions.Compiled),
+
+        new RegexReplace(@"^(?<title>.+?)\.(?<episode>S\d+(?:E\d+)?)\.(?<year>\d{4})(?<rest>\..+)", "${title}.(${year}).${episode}${rest}", RegexOptions.Compiled),
     };
 
     internal static readonly RegexReplace WebsitePrefixRegex = new(@"^(?:(?:\[|\()\s*)?(?:www\.)?[-a-z0-9-]{1,256}\.(?<!Naruto-Kun\.)(?:[a-z]{2,6}\.[a-z]{2,6}|xn--[a-z0-9-]{4,}|[a-z]{2,})\b(?:\s*(?:\]|\))|[ -]{2,})[ -]*",

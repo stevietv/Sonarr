@@ -27,6 +27,8 @@ namespace NzbDrone.Core.Test.ParserTests
         [TestCase("Series S02E09 HDTV x264-2HD [eztv]-[rarbg.com]", "series")]
         [TestCase("Series.911.S01.DVDRip.DD2.0.x264-DEEP", "series 911")]
         [TestCase("www.Torrenting.org - Series.S03E14.720p.HDTV.X264-DIMENSION", "series")]
+        [TestCase("Series.S01E03.2025.2160p.WEB-DL.H.265.AAC-ADWeb", "Series (2025)")]
+        [TestCase("Series.S01.2025.2160p.WEB-DL.H.265.AAC-ADWeb", "Series (2025)")]
         public void should_parse_series_name(string postTitle, string title)
         {
             var result = Parser.Parser.ParseSeriesName(postTitle).CleanSeriesTitle();
@@ -51,6 +53,8 @@ namespace NzbDrone.Core.Test.ParserTests
         [TestCase("1234.2022.S03E14.720p.HDTV.X264-DIMENSION", "1234", 2022)]
         [TestCase("1234-2022-S03E14-720p-HDTV-X264-DIMENSION", "1234", 2022)]
         [TestCase("1234_2022_S03E14_720p_HDTV_X264-DIMENSION", "1234", 2022)]
+        [TestCase("Series.S01E03.2025.2160p.WEB-DL.H.265.AAC-ADWeb", "Series", 2025)]
+        [TestCase("Series.S01.2025.2160p.WEB-DL.H.265.AAC-ADWeb", "Series", 2025)]
         public void should_parse_series_title_info(string postTitle, string titleWithoutYear, int year = 0)
         {
             var seriesTitleInfo = Parser.Parser.ParseTitle(postTitle).SeriesTitleInfo;
