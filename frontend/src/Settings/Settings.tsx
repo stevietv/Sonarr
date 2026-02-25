@@ -13,7 +13,7 @@ function Settings() {
 
       <PageContentBody>
         <Link className={styles.link} to="/settings/mediamanagement">
-          {translate('MediaManagement')}
+          {translate('MediaManagement')} Settings
         </Link>
 
         <div className={styles.summary}>
