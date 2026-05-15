@@ -30,11 +30,6 @@ function SeriesDetailsLinks(props: SeriesDetailsLinksProps) {
           externalId: tvdbId,
           name: 'The TVDB',
           url: `https://www.thetvdb.com/?tab=series&id=${tvdbId}`,
-        },
-        {
-          externalId: tvdbId,
-          name: 'Trakt',
-          url: `https://trakt.tv/search/tvdb/${tvdbId}?id_type=show`,
         }
       );
     }
@@ -58,6 +53,11 @@ function SeriesDetailsLinks(props: SeriesDetailsLinksProps) {
           externalId: imdbId,
           name: 'MDBList',
           url: `https://mdblist.com/show/${imdbId}`,
+        },
+        {
+          externalId: tvdbId,
+          name: 'Trakt',
+          url: `https://app.trakt.tv/shows/${imdbId}`,
         }
       );
     }
